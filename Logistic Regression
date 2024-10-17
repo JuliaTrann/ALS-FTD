@@ -1,0 +1,44 @@
+# 95% confidence calculation
+margin.error <- 1.96 * S.Error
+upper.level <- Estimate + margin.error
+lower.level <- Estimate - margin.error
+
+
+# Table for Forest Plot
+
+COMBO <- data.frame(Routes=c("Combo"),
+                                Estimate=c(-0.7794),  
+                                S.Error=c(0.1964),
+                                Pval=c(0.0000726),
+                                lower.level=c(-1.164344),
+                                upper.level=c(-0.394456))   
+
+
+# Forest Plot
+p <- 
+  COMBO |>
+  ggplot(aes(y = fct_rev(Routes))) + 
+  theme_classic()
+p
+
+p <- p +
+  geom_point(aes(x=Estimate), shape=15, size=3) +
+  geom_linerange(aes(xmin=lower.level, xmax=upper.level)) 
+p
+
+p <- p +
+  geom_vline(xintercept = 0, linetype="dashed") +
+  labs(x="Estimate", y="", title="")
+p
+
+p <- p + 
+  geom_vline(xintercept = 0, linetype = "dashed") + 
+  labs(
+    x = "Estimate", 
+    y = " ", 
+    title = "Estimating the Effects of the Combination of Drugs on Drug Success" 
+  ) + 
+  theme(
+    axis.text.y = element_text(size = 12),
+    axis.text.x = element_text(size = 12),
+    plot.title = element_text(hjust = 0.5, size = 12, color = "black")  

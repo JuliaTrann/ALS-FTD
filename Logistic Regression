@@ -1,4 +1,6 @@
-# 95% confidence calculation
+# Logistic Regression
+
+## 95% confidence calculation
 margin.error <- 1.96 * S.Error
 upper.level <- Estimate + margin.error
 lower.level <- Estimate - margin.error
